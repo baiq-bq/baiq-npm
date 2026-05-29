@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/public/*.d.ts",
+      "import": "./dist/public/*.js"
     }
   },
   "files": [
@@ -16,8 +20,10 @@
     "README.md"
   ],
   "scripts": {
+    "prebuild": "node scripts/generate-public-modules.mjs",
     "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist src/public",
+    "prepack": "npm run build",
     "test": "echo \"No tests yet\""
   },
   "dependencies": {
